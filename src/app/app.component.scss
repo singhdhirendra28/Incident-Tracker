@@ -1,0 +1,53 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+.incident{
+    height: 75px;
+    background-color: #000;
+    color: #ffffff;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding: 15px 0 0 15px;
+    font-family: sans-serif;
+}
+.title-row{
+    height: 35px;
+    background-color: #000;
+    color: #ffffff;
+    font-family: sans-serif;
+    border-bottom: 1px solid gray;
+    th,td{
+        border-top: 1px solid gray;
+    }
+}
+.incident-mob{
+    background-color: #000;
+    color: #ffffff;
+    padding-left: 15px;
+    padding-top: 15px;    
+    padding: 15px 0 30px 15px;
+    border-bottom: 1px solid gray;
+}
+.list{
+    list-style: none;
+    background-color: #000;
+    color: #ffffff;
+    padding-left: 0;
+    .item{
+        font-family: sans-serif;
+        padding:20px 20px 7px 20px;        
+        border-bottom: 1px solid gray;
+        img{
+            padding-right:15px;
+        }
+
+        .incident-detail{
+
+            padding: 10px 0 0 38px;
+            span{
+                
+                display: block;
+            }
+        }
+    }
+}
