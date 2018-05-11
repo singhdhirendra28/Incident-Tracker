@@ -10,7 +10,7 @@ describe('AppComponent', () => {
   let unsortedLst = new Array<Incident>();
   let objInc = new Incident(null, 1, 'test', 'faulty', 'look into', 1);
   let objInc1 = new Incident(null,1, 'test', 'faulty', 'look into', 2);
-  unsortedLst.push(objInc);
+  unsortedLst.push(objInc); 
   unsortedLst.push(objInc1);
 
   beforeEach(async(() => {
