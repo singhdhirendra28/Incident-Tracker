@@ -8,16 +8,14 @@ import { IncidentLocation, Incident } from 'src/app/app.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {  
+export class AppComponent implements OnInit {
   locationList: Array<IncidentLocation>;
   incidents: Array<Incident> = [];
   tableColumns: Array<string> = ['Date and Time', 'ID', 'Priority', 'Location Name',
     'Incident Name', 'Description'];
-  locationCounter: number = 0;
-  mobile: boolean = false;
 
   constructor(private cd: ChangeDetectorRef) {
-    this.mobile = this.isMobile();
+
   }
 
   ngOnInit() {
@@ -27,22 +25,21 @@ export class AppComponent implements OnInit {
       .then((val: Array<any>) => {
         this.locationList = val;
         this.locationList.forEach(location => {
-          this.locationCounter += 1;
-          //Get incidents
+
+          //Get incident by passing location id- dependent call
           fakeJs.getIncidentsByLocationId(location.id)
             .then((incsList: Array<any>) => {
 
               incsList.forEach(inci => {
-
-                this.incidents.push(new Incident(inci.datetime, inci.id, location.name, inci.name,
-                  'description not provided', inci.priority));
-                //Sort by datetime descending
-                this.incidents = this.incidents.sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime());
+                if (this.incidents.some(function (val) { return val.id === inci.id }) === false) {
+                  this.incidents.push(new Incident(inci.datetime, inci.id, location.name, inci.name,
+                    'description not provided', inci.priority));
+                  //Sort by datetime descending
+                  this.incidents = this.incidents.sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime());
+                }
               });
             }
             );
-
-
         })
       })
   }
@@ -55,12 +52,6 @@ export class AppComponent implements OnInit {
       sortedIncidents = sortedIncidents.concat(x);
     }
     this.incidents = sortedIncidents;
-  }
-
- public isMobile():boolean {
-    if (window.innerWidth < 600)
-      return true;
-    else false
   }
 }
 

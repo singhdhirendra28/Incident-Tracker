@@ -34,12 +34,6 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('call component', () => {
-    it('isMobile method should return false', () => {
-      const mobileDevice: boolean = component.isMobile();
-      expect(mobileDevice).toEqual(false);
-    });
-  });
 
   it('sorted method should return sorted list', () => {
     component.sorted(unsortedLst);
