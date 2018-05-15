@@ -24,13 +24,13 @@ export class AppComponent implements OnInit {
     fakeJs.getLocations()
       .then((val: Array<any>) => {
         this.locationList = val;
-        this.locationList.forEach(location => {
+        this.locationList.map(location => {
 
           //Get incident by passing location id- dependent call
           fakeJs.getIncidentsByLocationId(location.id)
             .then((incsList: Array<any>) => {
 
-              incsList.forEach(inci => {
+              incsList.map(inci => {
                 if (this.incidents.some(function (val) { return val.id === inci.id }) === false) {
                   this.incidents.push(new Incident(inci.datetime, inci.id, location.name, inci.name,
                     'description not provided', inci.priority));
